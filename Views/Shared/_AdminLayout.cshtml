@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - ArmsGuard Admin</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+</head>
+<body class="admin-body">
+	<div class="admin-shell">
+		<aside class="admin-sidebar">
+			<a class="brand-lockup admin-brand" asp-controller="Admin" asp-action="Dashboard"><span class="brand-mark">A</span><span>ARMS<span class="brand-accent">GUARD</span><small>ADMIN CONSOLE</small></span></a>
+			<nav class="admin-nav" aria-label="Administrator navigation">
+				<a href="#overview" class="active">Dashboard</a>
+				<a href="#catalog-management">Weapon catalog</a>
+				<a href="#user-management">User management</a>
+				<a href="#application-management">License applications</a>
+				<a href="#enquiries">Purchase enquiries</a>
+			</nav>
+			<button type="button" class="admin-logout" data-admin-logout>Log out</button>
+			<p class="admin-demo-note">Frontend demonstration<br />No information is saved.</p>
+		</aside>
+		<main class="admin-main">
+			<div class="admin-topbar"><span class="eyebrow">ARMSGUARD / ADMINISTRATION</span><a asp-controller="Home" asp-action="Index">View public site <span aria-hidden="true">↗</span></a></div>
+			<div class="admin-content">@RenderBody()</div>
+		</main>
+	</div>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/dashboard.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

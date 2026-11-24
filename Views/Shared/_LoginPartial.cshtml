@@ -1,0 +1,18 @@
+@if (User.Identity?.IsAuthenticated == true)
+{
+	<li class="nav-item"><span class="nav-link">Hello, @User.Identity.Name</span></li>
+	@if (User.IsInRole(ARMSGUARD.Data.IdentityRoles.Administrator))
+	{
+		<li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="Dashboard">Admin dashboard</a></li>
+	}
+	<li class="nav-item">
+		<form asp-controller="Account" asp-action="Logout" method="post">
+			<button class="nav-link btn btn-link" type="submit">Log out</button>
+		</form>
+	</li>
+}
+else
+{
+	<li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login">Login</a></li>
+	<li class="nav-item"><a class="btn btn-gold btn-sm px-3" asp-controller="Account" asp-action="Signup">Sign up</a></li>
+}

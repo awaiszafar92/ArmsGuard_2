@@ -1,0 +1,29 @@
+@model LoginViewModel
+@{
+	ViewData["Title"] = "Sign in";
+	ViewData["AuthHeading"] = "Welcome back";
+	ViewData["AuthIntro"] = "Sign in to your ArmsGuard account.";
+	Layout = "_AuthLayout";
+}
+<section class="auth-page">
+	<div class="auth-card">
+		<a class="brand-lockup auth-brand" asp-controller="Home" asp-action="Index"><span class="brand-mark">A</span><span>ARMS<span class="brand-accent">GUARD</span><small>INFORMATION &amp; LICENSING</small></span></a>
+		<p class="eyebrow mt-4">ACCOUNT ACCESS</p>
+		<h1>@ViewData["AuthHeading"]</h1>
+		<p class="muted-copy">@ViewData["AuthIntro"]</p>
+		@if (TempData["SuccessMessage"] is string successMessage)
+		{
+			<div class="alert alert-success" role="status">@successMessage</div>
+		}
+		<form asp-action="Login" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+			<input asp-for="ReturnUrl" type="hidden" />
+			<div class="mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" autocomplete="username" /><span asp-validation-for="Email" class="text-danger"></span></div>
+			<div class="mb-3"><label asp-for="Password" class="form-label"></label><div class="input-group"><input asp-for="Password" class="form-control" autocomplete="current-password" /><button class="btn btn-outline-secondary" type="button" data-password-toggle="Password">Show</button></div><span asp-validation-for="Password" class="text-danger"></span></div>
+			<div class="d-flex justify-content-between align-items-center mb-4"><label asp-for="RememberMe" class="form-check-label"><input asp-for="RememberMe" class="form-check-input me-2" />Remember me</label><a href="#forgot-password" data-demo-link="Password recovery is not configured.">Forgot password?</a></div>
+			<button class="btn btn-navy w-100" type="submit">Sign in</button>
+		</form>
+		<p class="auth-switch">New to ArmsGuard? <a asp-controller="Account" asp-action="Signup">Create an account</a></p>
+	</div>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

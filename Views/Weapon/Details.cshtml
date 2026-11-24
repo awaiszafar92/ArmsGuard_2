@@ -1,0 +1,8 @@
+@model ARMSGUARD.Models.WeaponItem
+@{
+	ViewData["Title"] = Model.Name;
+}
+<section class="section-space"><div class="container">
+	<a class="back-link" asp-controller="Weapon" asp-action="Catalog">← Back to catalog</a>
+	<div class="detail-layout mt-4"><div class="detail-image"><img src="@Model.Image" alt="Illustration for @Model.Name" /></div><div class="detail-content"><p class="eyebrow">@Model.Category · SAMPLE INFORMATION</p><h1>@Model.Name</h1><p class="lead">@Model.Description</p><p class="detail-manufacturer">Manufacturer <strong>@Model.Manufacturer</strong></p><div class="spec-grid"><div><span>Category</span><strong>@Model.Category</strong></div><div><span>Type</span><strong>@Model.Type</strong></div><div><span>Caliber</span><strong>@Model.Caliber</strong></div><div><span>Action</span><strong>@Model.Action</strong></div></div><div class="notice-box"><h2>Safety information</h2><p>@Model.SafetyInformation</p></div><div class="notice-box legal-box"><h2>Legal information</h2><p>@Model.LegalInformation</p></div><button type="button" class="btn btn-gold" data-enquiry="@Model.Name">Submit an enquiry</button><p class="small muted-copy mt-3">Enquiries are simulated requests for administrative and legal review only. No transaction is offered.</p></div></div>
+</div></section>

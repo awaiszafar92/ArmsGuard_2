@@ -1,0 +1,13 @@
+@{
+	ViewData["Title"] = "Access denied";
+	Layout = "_AuthLayout";
+}
+<section class="auth-page">
+	<div class="auth-card">
+		<a class="brand-lockup auth-brand" asp-controller="Home" asp-action="Index"><span class="brand-mark">A</span><span>ARMS<span class="brand-accent">GUARD</span><small>INFORMATION &amp; LICENSING</small></span></a>
+		<p class="eyebrow mt-4">ACCESS RESTRICTED</p>
+		<h1>Access denied</h1>
+		<p class="muted-copy">Your account is not authorized to view this page.</p>
+		<a class="btn btn-navy w-100" asp-controller="Home" asp-action="Index">Return home</a>
+	</div>
+</section>

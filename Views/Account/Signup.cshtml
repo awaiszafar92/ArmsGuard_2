@@ -1,0 +1,22 @@
+@model RegisterViewModel
+@{
+	ViewData["Title"] = "Create an account";
+	Layout = "_AuthLayout";
+}
+<section class="auth-page">
+	<div class="auth-card auth-card-wide">
+		<a class="brand-lockup auth-brand" asp-controller="Home" asp-action="Index"><span class="brand-mark">A</span><span>ARMS<span class="brand-accent">GUARD</span><small>INFORMATION &amp; LICENSING</small></span></a>
+		<p class="eyebrow mt-4">JOIN THE COMMUNITY</p><h1>Create your account</h1>
+		<p class="muted-copy">Create a secure account to access ArmsGuard.</p>
+		<form asp-action="Signup" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+			<div class="mb-3"><label asp-for="FullName" class="form-label"></label><input asp-for="FullName" class="form-control" autocomplete="name" /><span asp-validation-for="FullName" class="text-danger"></span></div>
+			<div class="mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" autocomplete="email" /><span asp-validation-for="Email" class="text-danger"></span></div>
+			<div class="mb-3"><label asp-for="Password" class="form-label"></label><div class="input-group"><input asp-for="Password" class="form-control" autocomplete="new-password" /><button class="btn btn-outline-secondary" type="button" data-password-toggle="Password">Show</button></div><span asp-validation-for="Password" class="text-danger"></span></div>
+			<div class="mb-3"><label asp-for="ConfirmPassword" class="form-label"></label><input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" /><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
+			<button class="btn btn-navy w-100" type="submit">Create account</button>
+		</form>
+		<p class="auth-switch">Already registered? <a asp-controller="Account" asp-action="Login">Sign in</a></p>
+	</div>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

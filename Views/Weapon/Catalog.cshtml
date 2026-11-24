@@ -1,0 +1,20 @@
+@model IReadOnlyList<ARMSGUARD.Models.WeaponItem>
+@{
+	ViewData["Title"] = "Weapon information catalog";
+}
+<section class="page-hero page-hero-compact"><div class="container"><p class="eyebrow">REFERENCE CATALOG</p><h1>Weapon information catalog</h1><p>Explore fictional sample records for general identification and safety reference.</p></div></section>
+<section class="section-space"><div class="container">
+	<div class="catalog-toolbar"><div class="search-wrap"><label class="visually-hidden" for="catalogSearch">Search catalog</label><input id="catalogSearch" class="form-control" type="search" placeholder="Search by name, type, or manufacturer" /></div><select id="categoryFilter" class="form-select" aria-label="Filter by category"><option value="">All categories</option><option>Handguns</option><option>Rifles</option><option>Shotguns</option><option>Historical Firearms</option></select><select id="manufacturerFilter" class="form-select" aria-label="Filter by manufacturer"><option value="">All manufacturers</option>@foreach (var manufacturer in Model.Select(x => x.Manufacturer).Distinct()) { <option>@manufacturer</option> }</select></div>
+	<p class="results-count" id="catalogCount" aria-live="polite"></p>
+	<div class="row g-4" id="catalogGrid">
+		@foreach (var weapon in Model)
+		{
+			<div class="col-md-6 col-lg-4 catalog-item" data-name="@weapon.Name" data-category="@weapon.Category" data-manufacturer="@weapon.Manufacturer" data-search="@weapon.Type @weapon.Caliber">
+				<article class="catalog-card"><img src="@weapon.Image" alt="Illustration for @weapon.Name" /><div class="catalog-card-body"><span class="category-label">@weapon.Category</span><h2>@weapon.Name</h2><p>@weapon.Manufacturer · @weapon.Type</p><dl><div><dt>Caliber</dt><dd>@weapon.Caliber</dd></div><div><dt>Action</dt><dd>@weapon.Action</dd></div></dl><a class="btn btn-outline-navy" asp-controller="Weapon" asp-action="Details" asp-route-id="@weapon.Id">View information</a></div></article>
+			</div>
+		}
+		<div class="col-12 d-none" id="catalogEmpty"><div class="empty-state">No sample records match those filters. Try another search.</div></div>
+	</div>
+	<p class="notice-bar mt-5">Catalog entries are fictional examples for informational display. They are not offers, advice, or confirmation of lawful availability.</p>
+</div></section>
+@section Scripts { <script src="~/js/catalog.js" asp-append-version="true"></script> }
